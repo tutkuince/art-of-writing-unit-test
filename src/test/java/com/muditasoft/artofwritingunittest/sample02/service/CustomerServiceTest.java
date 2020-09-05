@@ -27,7 +27,7 @@ class CustomerServiceTest {
 
     @Test
     void test_save_customer() {
-        final Customer customer = new Customer();
+        final Customer customer = new Customer(1L);
 
         customerService.saveCustomer(customer);
 

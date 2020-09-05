@@ -22,5 +22,9 @@ public class CustomerService {
         informationService.sendMailFromNewCustomer(customer);
     }
 
+    public void deleteCustomer(Long customerId) {
+        customerRepository.delete(customerId);
+    }
+
 
 }
