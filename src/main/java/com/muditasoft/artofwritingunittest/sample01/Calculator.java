@@ -9,4 +9,8 @@ public class Calculator {
     public int substitution(int number1, int number2) {
         return number1 - number2;
     }
+
+    public int calculateSquareMeters(int wide, int length) {
+        return wide * length;
+    }
 }
