@@ -51,4 +51,20 @@ public class BehaviourTest {
         inOrder.verify(dummyCustomerService).addCustomer("Istanbul");
         inOrder.verify(dummyCustomerService).addCustomer("Ankara");
     }
+
+    @Test
+    void test_verify_no_more() {
+        DummyCustomerService dummyCustomerService = Mockito.mock(DummyCustomerService.class);
+        DummyCustomerService dummyCustomerService2 = Mockito.mock(DummyCustomerService.class);
+
+        dummyCustomerService.addCustomer("Izmir");
+        dummyCustomerService.addCustomer("Istanbul");
+
+        verify(dummyCustomerService).addCustomer("Izmir");
+        verify(dummyCustomerService).addCustomer("Istanbul");
+
+        verifyNoMoreInteractions(dummyCustomerService);
+
+        verifyNoInteractions(dummyCustomerService2);
+    }
 }
