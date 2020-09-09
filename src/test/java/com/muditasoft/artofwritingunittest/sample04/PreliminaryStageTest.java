@@ -21,4 +21,12 @@ public class PreliminaryStageTest {
 
         Assertions.assertEquals("CustomerIzmir", customer);
     }
+
+    @Test
+    void test_throws_exception_with_usage_of_when() {
+        DummyCustomerService customerService = mock(DummyCustomerService.class);
+        when(customerService.getCustomer("ankara")).thenThrow(new IllegalArgumentException("EXCEPTION"));
+
+        Assertions.assertThrows(IllegalArgumentException.class, () -> customerService.getCustomer("ankara"));
+    }
 }
