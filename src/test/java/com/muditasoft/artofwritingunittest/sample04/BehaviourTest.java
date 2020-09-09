@@ -1,6 +1,7 @@
 package com.muditasoft.artofwritingunittest.sample04;
 
 import org.junit.jupiter.api.Test;
+import org.mockito.InOrder;
 import org.mockito.Mockito;
 
 import static org.mockito.Mockito.*;
@@ -34,5 +35,20 @@ public class BehaviourTest {
         verify(dummyCustomerService, never()).addCustomer("Ankara");
 
         verify(dummyCustomerService, atLeast(1)).addCustomer("Istanbul");
+    }
+
+    @Test
+    void test_check_orders() {
+        DummyCustomerService dummyCustomerService = Mockito.mock(DummyCustomerService.class);
+
+        dummyCustomerService.addCustomer("Izmir");
+        dummyCustomerService.addCustomer("Istanbul");
+        dummyCustomerService.addCustomer("Ankara");
+
+        InOrder inOrder = inOrder(dummyCustomerService);
+
+        inOrder.verify(dummyCustomerService).addCustomer("Izmir");
+        inOrder.verify(dummyCustomerService).addCustomer("Istanbul");
+        inOrder.verify(dummyCustomerService).addCustomer("Ankara");
     }
 }
